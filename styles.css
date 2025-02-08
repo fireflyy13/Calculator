@@ -1,0 +1,90 @@
+@font-face {
+  font-family: myFont;
+  src: url("Shooting\ Star.ttf");
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: myFont;
+  color: rgb(68, 85, 78);
+  /* flex-wrap: wrap; */
+}
+.numbers {
+  max-width: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.number,
+.result,
+.clear,
+.operator {
+  display: flex;
+  flex-grow: 1;
+  max-width: 90px;
+  /* height: 100px; */
+  aspect-ratio: 1/1;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 50%;
+  font-size: 18px;
+  background-color: rgba(143, 179, 164, 0.768);
+  font-family: myFont;
+  margin: 2px;
+  box-shadow: 5px 1px 5px rgb(68, 85, 78);
+  border: none;
+  color: rgb(68, 85, 78);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.break {
+  height: 0;
+  flex-basis: 100%;
+}
+
+.display {
+  margin-bottom: 30px;
+  min-width: 400px;
+  min-height: 40px;
+  flex-wrap: wrap;
+  text-align: center;
+  font-size: 25px;
+}
+
+.number:hover,
+.clear:hover,
+.result:hover,
+.operator:hover {
+  background-color: rgba(176, 216, 200, 0.768);
+}
+
+.number:active,
+.result:active,
+.clear:active,
+.operator:active {
+  background-color: rgba(149, 217, 200, 0.768);
+}
+
+.error-display {
+  margin: 30px;
+  min-width: 400px;
+  min-height: 40px;
+  flex-wrap: wrap;
+  text-align: center;
+  font-size: 20px;
+  color: rgb(221, 155, 166);
+}
+
+.zero {
+  flex-grow: 2;
+}
