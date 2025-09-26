@@ -26,7 +26,8 @@ body {
 .number,
 .result,
 .clear,
-.operator {
+.operator,
+.backspace {
   display: flex;
   flex-grow: 1;
   max-width: 90px;
@@ -87,4 +88,7 @@ body {
 
 .zero {
   flex-grow: 2;
+}
+
+.backspace-container {
 }

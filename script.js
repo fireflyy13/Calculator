@@ -3,6 +3,13 @@ const subtract = (a, b) => Number(a) - Number(b);
 const multiply = (a, b) => Number(a) * Number(b);
 const divide = (a, b) => Number(a) / Number(b);
 
+function isNumber(str) {
+  if (typeof str != "string") {
+    return false;
+  }
+  return !isNaN(str) && !isNaN(parseInt(str));
+}
+
 function operate(operator, a, b) {
   if (operator === "+") {
     return add(a, b);
@@ -17,14 +24,16 @@ function operate(operator, a, b) {
   }
 }
 
-const myDisplay = document.querySelector(".display");
+let myDisplay = document.querySelector(".display");
 const numberPanel = document.querySelector(".numbers");
 const errorDisplay = document.querySelector(".error-display");
 
 let firstNumber;
 let numbers = [];
 let operators = [];
+let result2 = [];
 let operatorPressed = false;
+let isResult = false;
 let operator;
 
 numberPanel.addEventListener("click", (evt) => {
@@ -33,6 +42,13 @@ numberPanel.addEventListener("click", (evt) => {
       myDisplay.innerHTML = "";
       myDisplay.innerHTML += evt.target.innerHTML;
       operatorPressed = false;
+      isResult = false;
+    } else if (isResult && !evt.target.innerHTML == ".") {
+      isResult = false;
+      myDisplay.innerHTML = evt.target.innerHTML;
+    } else if (isResult && evt.target.innerHTML == ".") {
+      isResult = false;
+      myDisplay.innerHTML = "";
     } else {
       myDisplay.innerHTML += evt.target.innerHTML;
     }
@@ -84,6 +100,7 @@ numberPanel.addEventListener("click", (evt) => {
       myDisplay.innerHTML = result;
       numbers = [];
       numbers.push(result);
+      isResult = true;
       operators.splice(0, 1);
     }
   } else if (evt.target.classList.contains("clear")) {
@@ -112,13 +129,129 @@ numberPanel.addEventListener("click", (evt) => {
     }
     let firstNumber = numbers[0];
     let secondNumber = numbers[1];
-    result = operate(operators[0], firstNumber, secondNumber);
+    let result = operate(operators[0], firstNumber, secondNumber);
 
     if (String(result).trim().length > 9) {
-      result = result.toFixed(9);
+      result = result.toFixed(2);
     }
 
     myDisplay.innerHTML = result;
+    isResult = true;
+    numbers = [];
+    operators = [];
+  }
+});
+
+document.addEventListener("keydown", (evt) => {
+  function populateNumbers() {
+    if (operatorPressed) {
+      myDisplay.innerHTML = "";
+      myDisplay.innerHTML += evt.key;
+      operatorPressed = false;
+      isResult = false;
+    } else if (isResult && !evt.key == ".") {
+      isResult = false;
+      myDisplay.innerHTML = evt.key;
+    } else if (isResult && evt.key == ".") {
+      isResult = false;
+      myDisplay.innerHTML = "";
+    } else {
+      myDisplay.innerHTML += evt.key;
+    }
+  }
+
+  let content = "";
+
+  if (isNumber(evt.key) || evt.key == ".") {
+    if (!String(myDisplay.innerHTML).includes(".")) {
+      if (evt.key === "." && myDisplay.innerHTML === "") {
+        myDisplay = "";
+      } else {
+        populateNumbers();
+      }
+    } else if (String(myDisplay.innerHTML).includes(".")) {
+      if (evt.key != ".") {
+        populateNumbers();
+      }
+    }
+  } else if (
+    evt.key == "+" ||
+    evt.key == "-" ||
+    evt.key == "*" ||
+    evt.key == "/"
+  ) {
+    if (operatorPressed === false) {
+      operators.push(evt.key);
+      numbers.push(myDisplay.innerHTML);
+    } else {
+      operators = [];
+      operators.push(evt.key);
+    }
+
+    operatorPressed = true;
+
+    if (numbers.length === 2) {
+      if (numbers[1] == 0 && operators[0] == "/") {
+        errorDisplay.innerHTML = "We are not allowed to divide by 0!";
+        setTimeout(() => {
+          errorDisplay.innerHTML = "";
+          myDisplay.innerHTML = "";
+        }, 3000);
+      }
+
+      let result = operate(operators[0], numbers[0], numbers[1]);
+      console.log(result);
+
+      if (String(result).trim().length > 9) {
+        result = result.toFixed(9);
+      }
+      myDisplay.innerHTML = result;
+      numbers = [];
+      numbers.push(result);
+      isResult = true;
+      operators.splice(0, 1);
+      result2.push(result);
+    }
+  } else if (
+    evt.key == "c" ||
+    evt.key == "C" ||
+    evt.key == "с" ||
+    evt.key == "С"
+  ) {
+    content = "";
+    myDisplay.innerHTML = content;
+    numbers = [];
+    operators = [];
+  }
+
+  if (evt.key == "=") {
+    numbers.push(myDisplay.innerHTML);
+
+    if (numbers[1] == 0 && operators[0] == "/") {
+      errorDisplay.innerHTML = "We are not allowed to divide by 0!";
+      setTimeout(() => {
+        errorDisplay.innerHTML = "";
+        myDisplay.innerHTML = "";
+      }, 3000);
+    } else if (numbers.length !== 2) {
+      myDisplay.innerHTML = NaN;
+      errorDisplay.innerHTML = "Please, enter 2 numbers!";
+      setTimeout(() => {
+        errorDisplay.innerHTML = "";
+        myDisplay.innerHTML = "";
+      }, 3000);
+    }
+    let firstNumber = numbers[0];
+    let secondNumber = numbers[1];
+
+    let result = operate(operators[0], firstNumber, secondNumber);
+
+    if (String(result).trim().length > 9) {
+      result = result.toFixed(2);
+    }
+
+    myDisplay.innerHTML = result;
+    isResult = true;
     numbers = [];
     operators = [];
   }
