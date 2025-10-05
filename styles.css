@@ -10,10 +10,11 @@ body {
   align-items: center;
   min-height: 100vh;
   font-family: myFont;
-  color: rgb(68, 85, 78);
+  color: black;
   /* flex-wrap: wrap; */
 }
-.numbers {
+.numbers,
+.operators {
   max-width: 400px;
   height: auto;
   display: flex;
@@ -21,10 +22,29 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
+  box-shadow: 2px 1px #3f1d40;
 }
 
+.container {
+  max-width: 415px;
+  height: auto;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-direction: column;
+  padding-top: 10px;
+  box-shadow: 5px 1px #3f1d40;
+  border: 5px solid #3f1d40;
+  border-radius: 15px;
+}
+
+.numbers {
+  background-color: #834283;
+  padding: 15px;
+  border-radius: 15px;
+}
 .number,
-.result,
 .clear,
 .operator,
 .backspace {
@@ -38,12 +58,28 @@ body {
   flex-wrap: wrap;
   border-radius: 50%;
   font-size: 18px;
-  background-color: rgba(143, 179, 164, 0.768);
+  background-color: white;
   font-family: myFont;
   margin: 2px;
-  box-shadow: 5px 1px 5px rgb(68, 85, 78);
+  box-shadow: 5px 1px #3f1d40;
   border: none;
-  color: rgb(68, 85, 78);
+  color: black;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.result {
+  flex-grow: 2;
+  max-height: 90px;
+  flex-wrap: wrap;
+  border-radius: 50px;
+  font-size: 18px;
+  background-color: white;
+  font-family: myFont;
+  margin: 2px;
+  box-shadow: 5px 1px #3f1d40;
+  border: none;
+  color: black;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -55,11 +91,21 @@ body {
 
 .display {
   margin-bottom: 30px;
-  min-width: 400px;
-  min-height: 40px;
+  width: 50%;
+  min-height: 76px;
   flex-wrap: wrap;
   text-align: center;
   font-size: 25px;
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+  margin: 0px;
+  align-items: center;
+}
+
+.display-container {
+  display: flex;
+  justify-content: end;
 }
 
 .number:hover,
@@ -88,7 +134,4 @@ body {
 
 .zero {
   flex-grow: 2;
-}
-
-.backspace-container {
 }

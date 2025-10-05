@@ -2,6 +2,7 @@ const add = (a, b) => Number(a) + Number(b);
 const subtract = (a, b) => Number(a) - Number(b);
 const multiply = (a, b) => Number(a) * Number(b);
 const divide = (a, b) => Number(a) / Number(b);
+const modulo = (a, b) => Number(a) % Number(b);
 
 function isNumber(str) {
   if (typeof str != "string") {
@@ -19,6 +20,8 @@ function operate(operator, a, b) {
     return multiply(a, b);
   } else if (operator === "/") {
     return divide(a, b);
+  } else if (operator === "%") {
+    return modulo(a, b);
   } else {
     return "Please, choose correct operator";
   }
@@ -140,6 +143,12 @@ numberPanel.addEventListener("click", (evt) => {
     numbers = [];
     operators = [];
   }
+
+  if (evt.target.classList.contains("backspace")) {
+    content = myDisplay.innerHTML;
+    myDisplay.innerHTML = content.slice(0, -1);
+    numbers.pop();
+  }
 });
 
 document.addEventListener("keydown", (evt) => {
@@ -178,7 +187,8 @@ document.addEventListener("keydown", (evt) => {
     evt.key == "+" ||
     evt.key == "-" ||
     evt.key == "*" ||
-    evt.key == "/"
+    evt.key == "/" ||
+    evt.key == "%"
   ) {
     if (operatorPressed === false) {
       operators.push(evt.key);
@@ -216,7 +226,8 @@ document.addEventListener("keydown", (evt) => {
     evt.key == "c" ||
     evt.key == "C" ||
     evt.key == "с" ||
-    evt.key == "С"
+    evt.key == "С" ||
+    evt.key == "Delete"
   ) {
     content = "";
     myDisplay.innerHTML = content;
@@ -254,5 +265,11 @@ document.addEventListener("keydown", (evt) => {
     isResult = true;
     numbers = [];
     operators = [];
+  }
+
+  if (evt.key == "Backspace") {
+    content = myDisplay.innerHTML;
+    myDisplay.innerHTML = content.slice(0, -1);
+    numbers.pop();
   }
 });
