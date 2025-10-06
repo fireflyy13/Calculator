@@ -91,16 +91,22 @@ body {
 
 .display {
   margin-bottom: 30px;
-  width: 50%;
   min-height: 76px;
+  width: 400px;
   flex-wrap: wrap;
   text-align: center;
   font-size: 25px;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: end;
   padding: 10px;
   margin: 0px;
   align-items: center;
+  overflow: scroll;
+}
+
+.display::-webkit-scrollbar {
+  display: none;
 }
 
 .display-container {
@@ -111,25 +117,35 @@ body {
 .number:hover,
 .clear:hover,
 .result:hover,
-.operator:hover {
-  background-color: rgba(176, 216, 200, 0.768);
+.operator:hover,
+.backspace:hover {
+  background-color: #f0d8f0;
 }
 
 .number:active,
 .result:active,
 .clear:active,
-.operator:active {
-  background-color: rgba(149, 217, 200, 0.768);
+.operator:active,
+.backspace:hover {
+  background-color: #bd7cbd;
+}
+
+.error-container {
+  display: flex;
+  justify-content: start;
+  align-items: start;
 }
 
 .error-display {
-  margin: 30px;
-  min-width: 400px;
-  min-height: 40px;
+  min-width: 200px;
+  height: 44px;
   flex-wrap: wrap;
-  text-align: center;
+  text-align: start;
   font-size: 20px;
-  color: rgb(221, 155, 166);
+  color: #834283;
+  padding-left: 10px;
+  transition-delay: 250ms;
+  transition-property: all;
 }
 
 .zero {
