@@ -27,6 +27,24 @@ function operate(operator, a, b) {
   }
 }
 
+function displayError() {
+  errorDisplay.innerHTML = "Error ⚠️";
+  // opacity = Number(
+  //   window.getComputedStyle(errorDisplay).getPropertyValue("opacity")
+  // );
+  // setTimeout(() => {
+  //   if (opacity > 0) {
+  //     opacity -= 0.1;
+  //     errorDisplay.style.opacity = opacity;
+  //   }
+  //   // errorDisplay.innerHTML = "";
+  //   // myDisplay.innerHTML = "";
+  // }, 3000);
+  setTimeout(() => {
+    errorDisplay.innerHTML = "";
+  }, 800);
+}
+
 let myDisplay = document.querySelector(".display");
 const numberPanel = document.querySelector(".numbers");
 const errorDisplay = document.querySelector(".error-display");
@@ -57,20 +75,6 @@ numberPanel.addEventListener("click", (evt) => {
     } else {
       myDisplay.innerHTML += evt.target.innerHTML;
     }
-  }
-
-  function displayError() {
-    opacity = Number(
-      window.getComputedStyle(errorDisplay).getPropertyValue("opacity")
-    );
-    setTimeout(() => {
-      if (opacity > 0) {
-        opacity -= 0.1;
-        errorDisplay.style.opacity = opacity;
-      }
-      // errorDisplay.innerHTML = "";
-      // myDisplay.innerHTML = "";
-    }, 3000);
   }
 
   if (evt.target === evt.currentTarget) {
@@ -104,9 +108,9 @@ numberPanel.addEventListener("click", (evt) => {
 
     if (numbers.length === 2) {
       if (numbers[1] == 0) {
-        errorDisplay.innerHTML = "Error";
         displayError();
-        errorDisplay.style.opacity = 1;
+        // displayError();
+        // errorDisplay.style.opacity = 1;
       }
 
       let result = operate(operators[0], numbers[0], numbers[1]);
@@ -130,31 +134,36 @@ numberPanel.addEventListener("click", (evt) => {
   if (evt.target.classList.contains("result")) {
     numbers.push(myDisplay.innerHTML);
 
-    if (numbers[1] == 0) {
-      errorDisplay.innerHTML = "Error";
-      opacity = Number(
-        window.getComputedStyle(errorDisplay).getPropertyValue("opacity")
-      );
-      setTimeout(() => {
-        setInterval(() => {
-          if (opacity > 0) {
-            opacity -= 0.1;
-            errorDisplay.style.opacity = opacity;
-          }
-        }, 300);
-        // errorDisplay.innerHTML = "";
-        // myDisplay.innerHTML = "";
-      }, 500);
+    errorDisplay.style.opacity = 1;
+    if (numbers[1] == 0 && operators[0] == "/") {
+      // opacity = Number(
+      //   window.getComputedStyle(errorDisplay).getPropertyValue("opacity")
+      // );
+      // setTimeout(() => {
+      //   setInterval(() => {
+      //     if (opacity > 0) {
+      //       opacity -= 0.1;
+      //       errorDisplay.style.opacity = opacity;
+      //     }
+      //   }, 300);
+      //   // errorDisplay.innerHTML = "";
+      //   // myDisplay.innerHTML = "";
+      // }, 500);
+      // setTimeout(() => {
+      //   errorDisplay.innerHTML = "";
+      // }, 500);
+      displayError();
     } else if (numbers.length !== 2) {
       myDisplay.innerHTML = NaN;
+      isResult = true;
       errorDisplay.innerHTML = "2 numbers required...";
-      setTimeout(() => {
-        errorDisplay.innerHTML = "";
-        // myDisplay.innerHTML = "";
-      }, 3000);
+      // setTimeout(() => {
+      //   errorDisplay.innerHTML = "";
+      //   // myDisplay.innerHTML = "";
+      // }, 3000);
+      displayError();
     }
 
-    errorDisplay.style.opacity = 1;
     let firstNumber = numbers[0];
     let secondNumber = numbers[1];
     let result = operate(operators[0], firstNumber, secondNumber);
@@ -229,11 +238,12 @@ document.addEventListener("keydown", (evt) => {
 
     if (numbers.length === 2) {
       if (numbers[1] == 0 && operators[0] == "/") {
-        errorDisplay.innerHTML = "Error";
-        setTimeout(() => {
-          errorDisplay.innerHTML = "";
-          myDisplay.innerHTML = "";
-        }, 3000);
+        displayError();
+        myDisplay.innerHTML = "Infinity";
+        // setTimeout(() => {
+        //   errorDisplay.innerHTML = "";
+        //   myDisplay.innerHTML = "";
+        // }, 3000);
       }
 
       let result = operate(operators[0], numbers[0], numbers[1]);
@@ -266,18 +276,21 @@ document.addEventListener("keydown", (evt) => {
     numbers.push(myDisplay.innerHTML);
 
     if (numbers[1] == 0 && operators[0] == "/") {
-      errorDisplay.innerHTML = "Error";
-      setTimeout(() => {
-        errorDisplay.innerHTML = "";
-        // myDisplay.innerHTML = "";
-      }, 3000);
+      myDisplay.innerHTML = "Infinity";
+      // setTimeout(() => {
+      //   errorDisplay.innerHTML = "";
+      //   // myDisplay.innerHTML = "";
+      // }, 3000);
+      displayError();
     } else if (numbers.length !== 2) {
       myDisplay.innerHTML = NaN;
+      isResult = true;
       errorDisplay.innerHTML = "2 numbers required...";
-      setTimeout(() => {
-        errorDisplay.innerHTML = "";
-        // myDisplay.innerHTML = "";
-      }, 3000);
+      // setTimeout(() => {
+      //   errorDisplay.innerHTML = "";
+      //   // myDisplay.innerHTML = "";
+      // }, 3000);
+      displayError();
     }
     let firstNumber = numbers[0];
     let secondNumber = numbers[1];
