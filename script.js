@@ -185,7 +185,6 @@ numberPanel.addEventListener("click", (evt) => {
   ) {
     content = myDisplay.innerHTML;
     myDisplay.innerHTML = content.slice(0, -1);
-    // numbers.pop();
   }
 });
 
@@ -319,6 +318,5 @@ document.addEventListener("keydown", (evt) => {
   ) {
     content = myDisplay.innerHTML;
     myDisplay.innerHTML = content.slice(0, -1);
-    // numbers.pop();
   }
 });
