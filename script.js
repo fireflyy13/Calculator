@@ -115,9 +115,9 @@ numberPanel.addEventListener("click", (evt) => {
 
       let result = operate(operators[0], numbers[0], numbers[1]);
 
-      if (String(result).trim().length > 9) {
-        result = result.toFixed(9);
-      }
+      // if (String(result).trim().length > 9) {
+      //   result = result.toFixed(9);
+      // }
       myDisplay.innerHTML = result;
       numbers = [];
       numbers.push(result);
@@ -301,9 +301,16 @@ document.addEventListener("keydown", (evt) => {
 
     let result = operate(operators[0], firstNumber, secondNumber);
 
-    if (String(result).trim().length > 9) {
-      result = result.toFixed(9);
-    }
+    // if (String(result).indexOf(".") != -1) {
+    //   if (
+    //     String(result)
+    //       .trim()
+    //       .substring(String(result).indexOf("."), String(result).length) > 9
+    //   ) {
+    //     console.log(result);
+    //     result = result.toFixed(9);
+    //   }
+    // }
 
     myDisplay.innerHTML = result;
     isResult = true;
