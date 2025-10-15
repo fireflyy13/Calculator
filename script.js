@@ -58,7 +58,7 @@ let isResult = false;
 let operator;
 
 numberPanel.addEventListener("click", (evt) => {
-  console.log(isResult);
+  console.log(numbers);
   function populateNumbers() {
     if (operatorPressed) {
       myDisplay.innerHTML = "";
@@ -169,7 +169,7 @@ numberPanel.addEventListener("click", (evt) => {
     let result = operate(operators[0], firstNumber, secondNumber);
 
     if (String(result).trim().length > 9) {
-      result = result.toFixed(2);
+      result = result.toFixed(9);
     }
 
     myDisplay.innerHTML = result;
@@ -178,14 +178,19 @@ numberPanel.addEventListener("click", (evt) => {
     operators = [];
   }
 
-  if (evt.target.classList.contains("backspace")) {
+  if (
+    evt.target.classList.contains("backspace") &&
+    myDisplay.innerHTML != "NaN" &&
+    myDisplay.innerHTML != "Infinity"
+  ) {
     content = myDisplay.innerHTML;
     myDisplay.innerHTML = content.slice(0, -1);
-    numbers.pop();
+    // numbers.pop();
   }
 });
 
 document.addEventListener("keydown", (evt) => {
+  console.log(numbers);
   console.log(isResult);
   function populateNumbers() {
     if (operatorPressed) {
@@ -298,7 +303,7 @@ document.addEventListener("keydown", (evt) => {
     let result = operate(operators[0], firstNumber, secondNumber);
 
     if (String(result).trim().length > 9) {
-      result = result.toFixed(2);
+      result = result.toFixed(9);
     }
 
     myDisplay.innerHTML = result;
@@ -307,9 +312,13 @@ document.addEventListener("keydown", (evt) => {
     operators = [];
   }
 
-  if (evt.key == "Backspace") {
+  if (
+    evt.key == "Backspace" &&
+    myDisplay.innerHTML != "NaN" &&
+    myDisplay.innerHTML != "Infinity"
+  ) {
     content = myDisplay.innerHTML;
     myDisplay.innerHTML = content.slice(0, -1);
-    numbers.pop();
+    // numbers.pop();
   }
 });
