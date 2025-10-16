@@ -15,34 +15,34 @@ body {
 }
 .numbers,
 .operators {
-  max-width: 400px;
+  max-width: 350px;
   height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
   box-shadow: 2px 1px #3f1d40;
 }
 
 .container {
-  max-width: 415px;
+  max-width: 363px;
   height: auto;
   background-color: white;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
   flex-direction: column;
-  padding-top: 10px;
-  box-shadow: 5px 1px #3f1d40;
-  border: 5px solid #3f1d40;
-  border-radius: 15px;
+  padding-top: 8.75px;
+  box-shadow: 6px 6px #3f1d40;
+  border: 4px solid #3f1d40;
+  border-radius: 13px;
 }
 
 .numbers {
   background-color: #834283;
-  padding: 15px;
-  border-radius: 15px;
+  padding: 13px;
+  border-radius: 13px;
 }
 .number,
 .clear,
@@ -50,14 +50,14 @@ body {
 .backspace {
   display: flex;
   flex-grow: 1;
-  max-width: 90px;
+  max-width: 79px;
   /* height: 100px; */
   aspect-ratio: 1/1;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   border-radius: 50%;
-  font-size: 18px;
+  font-size: 15px;
   background-color: white;
   font-family: myFont;
   margin: 2px;
@@ -70,10 +70,10 @@ body {
 
 .result {
   flex-grow: 2;
-  max-height: 90px;
+  max-height: 79px;
   flex-wrap: wrap;
   border-radius: 50px;
-  font-size: 18px;
+  font-size: 16px;
   background-color: white;
   font-family: myFont;
   margin: 2px;
@@ -90,16 +90,16 @@ body {
 }
 
 .display {
-  margin-bottom: 30px;
-  min-height: 76px;
-  width: 400px;
+  margin-bottom: 26px;
+  min-height: 66px;
+  width: 350px;
   flex-wrap: wrap;
   text-align: center;
-  font-size: 25px;
+  font-size: 22px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: end;
-  padding: 10px;
+  padding: 9px;
   margin: 0px;
   align-items: center;
   overflow: scroll;
@@ -137,13 +137,13 @@ body {
 }
 
 .error-display {
-  min-width: 200px;
-  height: 44px;
+  min-width: 175px;
+  height: 39px;
   flex-wrap: wrap;
   text-align: start;
-  font-size: 20px;
+  font-size: 18px;
   color: #834283;
-  padding-left: 10px;
+  padding-left: 9px;
   transition-delay: 250ms;
   transition-property: all;
 }
